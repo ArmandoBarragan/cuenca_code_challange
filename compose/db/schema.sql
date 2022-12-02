@@ -1,0 +1,1 @@
+\c eight_queens
