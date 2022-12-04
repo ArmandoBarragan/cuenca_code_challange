@@ -1,5 +1,9 @@
+from src.eight_queens import get_solutions
+from src.solutions import FUNDAMENTAL_SOLUTIONS
+
+
 def main():
-    print("main")
+    print(get_solutions(8))
 
 
 if __name__ == "__main__":
