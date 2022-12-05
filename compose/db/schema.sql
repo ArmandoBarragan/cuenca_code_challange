@@ -1,18 +1,16 @@
 \c eight_queens
 
 CREATE TABLE solutions (
-    id SERIAL,
-    table_size INTEGER,
-    CONSTRAINT solution_pk PRIMARY KEY (id)
+    id SERIAL PRIMARY KEY,
+    table_size INTEGER NOT NULL
 );
 
 CREATE TABLE positions (
-    id SERIAL,
+    id SERIAL PRIMARY KEY ,
     x_position INTEGER NOT NULL,
     y_position INTEGER NOT NULL,
     solution_pk INTEGER NOT NULL,
 
     CONSTRAINT solution_fk FOREIGN KEY (solution_pk)
-        REFERENCES solutions ON DELETE CASCADE,
-    CONSTRAINT position_pk PRIMARY KEY (id)
+        REFERENCES solutions ON DELETE CASCADE
 );

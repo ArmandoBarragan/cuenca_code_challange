@@ -18,18 +18,22 @@ def position_is_available(position: Dict, queens: List) -> bool:
 def place_queen(row, queens, n, solutions):
     if row == n:
         solutions.append(queens.copy())
-
+        return 1
     else:
+        total_solutions = 0
+
         for col in range(n):
             position = {"x": col, "y": row}
 
             if position_is_available(position, queens):
                 queens[row] = position
-                place_queen(row + 1, queens, n, solutions)
+                total_solutions += place_queen(row + 1, queens, n, solutions)
+
+        return total_solutions
 
 
 def n_queens(n):
-    queens = [None] * 4
+    queens = [None for i in range(n)]
     solutions = []
     row = 0
     place_queen(row, queens, n, solutions)
