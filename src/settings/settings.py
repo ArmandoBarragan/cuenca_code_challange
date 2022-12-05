@@ -12,3 +12,10 @@ DATABASE = {
     "DB_USERNAME": os.getenv("DB_USERNAME", default="postgres"),
     "DB_NAME": os.getenv("DB_NAME", default="eight_queens")
 }
+
+
+SERVER = {
+    "HOST": os.getenv('HOST', default='0.0.0.0'),
+    "PORT": os.getenv('PORT', default=8000),
+    "DEBUG": os.getenv('DEBUG', default=False),
+}

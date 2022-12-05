@@ -4,8 +4,8 @@ from sqlalchemy.orm import sessionmaker
 from sqlalchemy.exc import OperationalError
 
 # Project
-from src.database.settings import DATABASE
-from src.database.settings import Base
+from src.settings.settings import DATABASE
+from src.settings.settings import Base
 
 # Session maker
 def create_sessionmaker():
