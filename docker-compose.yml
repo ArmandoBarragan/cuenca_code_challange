@@ -7,7 +7,7 @@ services:
       dockerfile: compose/app/DOCKERFILE
     depends_on:
       - db
-    restart: "no"
+    restart: always
     volumes:
       - .:/app/
     env_file: compose/app/example.env
