@@ -1,13 +1,11 @@
 from typing import List, Dict
-from pdb import set_trace
 
 def position_is_available(position: Dict, queens: List) -> bool:
     """position is a bidimensional array where 0 is x and 1 is y"""
-    if len(queens) == 0:
+    if queens[0] is None:
         return True
 
-    for row in range(position["y"] + 1): # Vertical comparison
-        # set_trace()
+    for row in range(position["y"]): # Vertical comparison
         if position["x"] == queens[row]["x"]:
             return False
 
@@ -17,26 +15,27 @@ def position_is_available(position: Dict, queens: List) -> bool:
     return True
 
 
-def position_queen(queens: List, n: int, row: int) -> Dict:
-    for column in range(n - 1):
-        position = {"x": column, "y": row}
-        if position_is_available(position, queens):
-            return position
+def place_queen(row, queens, n):
+    if row == n:
+        print(queens)
+        return 1
+    else:
+        total_solutions = 0
+
+        for col in range(n):
+            position = {"x": col, "y": row}
+
+            if position_is_available(position, queens):
+                queens[row] = position
+                total_solutions += place_queen(row + 1, queens, n)
+
+        return total_solutions
 
 
-def get_queens(n: int, solutions: List, queens: List)-> List:
-    for i in range(n - 1):
-        queens.append(position_queen(queens, n, i))
-
-        if len(queens) < n:
-            solutions = get_queens(n, solutions, queens)
-        else:
-            solutions.append(queens)
-
-    return solutions
+def get_solutions(n):
+    queens = [None for i in range(n)]
+    solutions = []
+    row = 0
+    return place_queen(row, queens, n)
 
 
-def get_solutions(n: int) -> List:
-    solutions = get_queens(n, [], [])
-
-    return solutions
