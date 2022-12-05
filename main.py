@@ -1,5 +1,4 @@
-from src.eight_queens import get_solutions
-from src.solutions import FUNDAMENTAL_SOLUTIONS
+from src.eight_queens.eight_queens import get_solutions
 
 
 def main():

@@ -17,6 +17,7 @@ services:
     ports:
       - '5432:5432'
     volumes:
-      - ./compose/db/:/docker-entrypoint-init.d/
+      - ./compose/db:/docker-entrypoint-initdb.d/
     env_file:
       - ./compose/db/example.env
+    restart: always
