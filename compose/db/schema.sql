@@ -2,6 +2,7 @@
 
 CREATE TABLE solutions (
     id SERIAL,
+    table_size INTEGER,
     CONSTRAINT solution_pk PRIMARY KEY (id)
 );
 

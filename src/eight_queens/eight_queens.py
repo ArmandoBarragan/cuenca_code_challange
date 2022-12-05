@@ -28,7 +28,7 @@ def place_queen(row, queens, n, solutions):
                 place_queen(row + 1, queens, n, solutions)
 
 
-def get_solutions(n):
+def n_queens(n):
     queens = [None] * 4
     solutions = []
     row = 0

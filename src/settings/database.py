@@ -11,7 +11,7 @@ from src.settings.settings import Base
 def create_sessionmaker():
     """Sets the database parameters that will be used to start sessions."""
     uri = 'postgresql://{user}:{password}@{host}:{port}/{name}'.format(
-        user=DATABASE['DB_USER'],
+        user=DATABASE['DB_USERNAME'],
         password=DATABASE['DB_PASSWORD'],
         host=DATABASE['DB_HOST'],
         name=DATABASE['DB_NAME'],

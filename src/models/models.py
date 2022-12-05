@@ -5,6 +5,7 @@ from src.settings.settings import Base
 class Solution(Base):
     __tablename__ = "solutions"
     id =  Column(Integer, primary_key=True)
+    table_size = Column(Integer)
 
 
 class Position(Base):
