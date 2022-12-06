@@ -1,6 +1,6 @@
 from fastapi import APIRouter, HTTPException, status, Body
 from app.schemas import BoardSizePayloadSchema, AllSolutionsSchema
-from app.controllers.api_controller import APIController
+from app.controller import APIController
 
 
 router = APIRouter()
@@ -17,4 +17,4 @@ def get_solutions(payload: BoardSizePayloadSchema = Body(...)):
             detail="Board size has to be equal or greater than 4x4",
         )
 
-    return api_controller.make_solutions(payload=payload)
+    return AllSolutionsSchema(solutions=api_controller.make_solutions(payload=payload))

@@ -3,16 +3,13 @@ from typing import List
 from app.schemas import BoardSizePayloadSchema, AllSolutionsSchema, SolutionSchema
 from app.settings.database import Session
 from app.models import Solution, Position
-from app.controllers.n_queens_controller import NQueensController
-
-
-n_queens_controller = NQueensController()
+from app import n_queens
 
 
 class APIController:
     def make_solutions(self, payload: BoardSizePayloadSchema):
         """Takes the board size and if the solutions for it are already in the database, it pulls them from it.
-        Otherwise, it calls for the method get_solutions from n_queens_controller."""
+        Otherwise, it calls for the method get_solutions from n_queens."""
         with Session() as session:
             solutions = (
                 session.query(Solution)
@@ -24,7 +21,7 @@ class APIController:
                 return self.format_solutions(solutions, session)
 
             else:
-                solutions = n_queens_controller.get_solutions(payload.size)
+                solutions = n_queens.get_solutions(payload.size)
                 return self.save_solutions(solutions, payload.size, session)
 
     def save_solutions(self, solutions: List, board_size: int, session: Session) -> AllSolutionsSchema:
@@ -53,7 +50,7 @@ class APIController:
         session.commit()
         return AllSolutionsSchema(solutions=all_solutions)
 
-    def format_solutions(self, solutions: List, session: Session) -> AllSolutionsSchema:
+    def format_solutions(self, solutions: List, session: Session) -> List:
         """Gives solutions the [[{}], [{}]] format when they were pulled from the database."""
         all_solutions = []
 
@@ -68,6 +65,5 @@ class APIController:
             for position in positions:
                 queens.append({"x": position.x_position, "y": position.y_position})
 
-                all_solutions.append(SolutionSchema(queens=queens))
-
-        return AllSolutionsSchema(solutions=all_solutions)
+            all_solutions.append(SolutionSchema(queens=queens))
+        return all_solutions
