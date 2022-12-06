@@ -14,8 +14,10 @@ def test_get_solutions():
     ]
 
     content = json.loads(response.content.decode("utf-8"))
-    for solutions in content:
-        if first_solution in content:
+    solutions = content["solutions"]
+
+    for solution in solutions:
+        if first_solution == solution["queens"]:
             assert True
             return
     assert False
