@@ -1,0 +1,35 @@
+language: python
+
+services:
+  - docker
+
+git:
+  depth: 2
+
+branches:
+  only:
+    - master
+    - tests
+
+before_install:
+  - sudo apt-get update
+  - sudo apt install docker-compose-plugin
+  - sudo rm /usr/local/bin/docker-compose
+  - echo 'alias docker-compose="docker compose"' >> ~/.bashrc
+  - source ~/.bashrc
+  - docker compose up --build
+
+jobs:
+  include:
+    - stage: test
+      script:
+      - docker-compose
+      - cd tests
+      - pytest tests.py
+
+notifications:
+  email:
+    recipients:
+      - armandobp765@gmail.com
+    on_success: always
+    on_failure: always

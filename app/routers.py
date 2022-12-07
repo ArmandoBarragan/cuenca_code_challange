@@ -7,6 +7,12 @@ router = APIRouter()
 api_controller = APIController()
 
 
+@router.get(
+    '/', status_code=status.HTTP_200_OK
+)
+def home():
+    return "home"
+
 @router.post(
     "/solutions/", response_model=AllSolutionsSchema, status_code=status.HTTP_200_OK
 )

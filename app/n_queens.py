@@ -17,6 +17,7 @@ def position_is_available(position: Dict, queens: List) -> bool:
 
     return True
 
+
 def place_queen(row, queens, n, solutions):
     """The main function to generate the solutions using recursion."""
     if row == n:
@@ -33,6 +34,7 @@ def place_queen(row, queens, n, solutions):
                 total_solutions += place_queen(row + 1, queens, n, solutions)
 
         return total_solutions
+
 
 def get_solutions(n):
     queens = [None for i in range(n)]
