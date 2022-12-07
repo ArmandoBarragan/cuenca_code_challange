@@ -12,11 +12,10 @@ branches:
     - tests
 
 before_install:
-  - sudo apt-get update
-  - sudo apt install docker-compose-plugin
   - sudo rm /usr/local/bin/docker-compose
-  - echo 'alias docker-compose="docker compose"' >> ~/.bashrc
-  - source ~/.bashrc
+  - curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose
+  - chmod +x docker-compose
+  - sudo mv docker-compose /usr/local/bin
   - docker compose up --build
 
 jobs:
