@@ -1,4 +1,4 @@
-import requests, pytest, socket, os
+import pytest, socket, os
 
 @pytest.fixture(scope="session")
 def http_service():

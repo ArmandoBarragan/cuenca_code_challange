@@ -18,7 +18,9 @@ jobs:
       - docker-compose up --build -d
       - cd tests
       - pytest tests.py
-      - docker-compose down
+
+after_success:
+  - docker-compose down
 
 notifications:
   email:
