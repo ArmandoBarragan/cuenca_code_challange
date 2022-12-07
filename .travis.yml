@@ -15,9 +15,10 @@ jobs:
   include:
     - stage: test
       script:
-      - docker-compose
+      - docker-compose up --build -d
       - cd tests
       - pytest tests.py
+      - docker-compose down
 
 notifications:
   email:
