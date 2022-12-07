@@ -11,9 +11,6 @@ branches:
     - master
     - tests
 
-before_install:
-  - docker-compose up --build
-
 jobs:
   include:
     - stage: test
