@@ -1,6 +1,6 @@
 from typing import List
 
-from app.schemas import BoardSizePayloadSchema, AllSolutionsSchema, SolutionSchema
+from app.schemas import BoardSizePayloadSchema, SolutionSchema
 from app.settings.database import Session
 from app.models import Solution, Position
 from app import n_queens
@@ -43,9 +43,8 @@ class APIController:
                 )
 
                 queens.append({"x": position["x"], "y": position["y"]})
-
                 session.add(position_instance)
-                all_solutions.append(SolutionSchema(queens=queens))
+            all_solutions.append(SolutionSchema(queens=queens))
 
         session.commit()
         return all_solutions
