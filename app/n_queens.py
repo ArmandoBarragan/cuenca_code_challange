@@ -2,7 +2,7 @@ from typing import List, Dict
 
 
 def position_is_available(position: Dict, queens: List) -> bool:
-    """position is a bidimensional array where 0 is x and 1 is y"""
+    """position is a bi-dimensional array where 0 is x and 1 is y"""
     if queens[0] is None:
         return True
 
@@ -16,6 +16,7 @@ def position_is_available(position: Dict, queens: List) -> bool:
             return False
 
     return True
+
 
 def place_queen(row, queens, n, solutions):
     """The main function to generate the solutions using recursion."""
@@ -33,6 +34,7 @@ def place_queen(row, queens, n, solutions):
                 total_solutions += place_queen(row + 1, queens, n, solutions)
 
         return total_solutions
+
 
 def get_solutions(n):
     queens = [None for i in range(n)]

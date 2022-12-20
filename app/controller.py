@@ -24,7 +24,7 @@ class APIController:
                 solutions = n_queens.get_solutions(payload.size)
                 return self.save_solutions(solutions, payload.size, session)
 
-    def save_solutions(self, solutions: List, board_size: int, session: Session) -> AllSolutionsSchema:
+    def save_solutions(self, solutions: List, board_size: int, session: Session) -> List:
         all_solutions = []
 
         for solution in solutions:
@@ -48,7 +48,7 @@ class APIController:
                 all_solutions.append(SolutionSchema(queens=queens))
 
         session.commit()
-        return AllSolutionsSchema(solutions=all_solutions)
+        return all_solutions
 
     def format_solutions(self, solutions: List, session: Session) -> List:
         """Gives solutions the [[{}], [{}]] format when they were pulled from the database."""
@@ -62,8 +62,10 @@ class APIController:
             )
 
             queens = []
+
             for position in positions:
                 queens.append({"x": position.x_position, "y": position.y_position})
 
             all_solutions.append(SolutionSchema(queens=queens))
+
         return all_solutions
